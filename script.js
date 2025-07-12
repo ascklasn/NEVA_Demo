@@ -25,7 +25,7 @@ function updateSubtask() {
     
     // 自动选择第一个选项并更新预测信息
     subtaskSelect.value = options[0];
-    updatePredictionInfo(); // 立即更新预测信息
+    updatePredictionInfo(); // 立即更新预测信息（包括图像切换）
   } else {
     const opt = document.createElement("option");
     opt.value = "";
@@ -87,6 +87,9 @@ function updatePredictionInfo() {
       if (confidenceEl) {
         confidenceEl.textContent = "---";
       }
+      
+      // 切换图像到PFS目录
+      updateImageSources("pfs");
     }
     else if (selectedTask === "OS") {
       if (predictionResultEl) {
@@ -98,6 +101,9 @@ function updatePredictionInfo() {
       if (confidenceEl) {
         confidenceEl.textContent = "---";
       }
+      
+      // 切换图像到OS目录
+      updateImageSources("os");
     }
     else {
       if (predictionTaskEl) predictionTaskEl.textContent = "---";
@@ -114,6 +120,32 @@ function updatePredictionInfo() {
   }
 }
 
+
+// 更新图像源的函数
+function updateImageSources(taskType) {
+  const originImage = document.getElementById('originImage');
+  const heatmapImage = document.getElementById('heatmapImage');
+  
+  if (originImage && heatmapImage) {
+    // 根据任务类型切换图像路径
+    if (taskType === "os") {
+      originImage.src = "./images/wsi图像/os/原图.jpg";
+      heatmapImage.src = "./images/wsi图像/os/热力图.jpg";
+      originImage.title = "Original Whole Slide Image (WSI) for OS Prediction";
+      heatmapImage.title = "Heatmap for OS Prediction";
+    } else if (taskType === "pfs") {
+      originImage.src = "./images/wsi图像/pfs/原图.jpg";
+      heatmapImage.src = "./images/wsi图像/pfs/热力图.jpg";
+      originImage.title = "Original Whole Slide Image (WSI) for PFS Prediction";
+      heatmapImage.title = "Heatmap for PFS Prediction";
+    }
+    
+    // 重置图像的变换状态
+    if (window.imageSynchronizer) {
+      window.imageSynchronizer.resetPosition();
+    }
+  }
+}
 
 // 图像同步功能
 class ImageSynchronizer {
@@ -286,3 +318,29 @@ document.addEventListener('DOMContentLoaded', function() {
     window.imageSynchronizer = new ImageSynchronizer();
   }, 100);
 });
+
+// 更新图像源的函数
+function updateImageSources(taskType) {
+  const originImage = document.getElementById('originImage');
+  const heatmapImage = document.getElementById('heatmapImage');
+  
+  if (originImage && heatmapImage) {
+    // 根据任务类型切换图像路径
+    if (taskType === "os") {
+      originImage.src = "./images/wsi图像/os/原图.jpg";
+      heatmapImage.src = "./images/wsi图像/os/热力图.jpg";
+      originImage.title = "Original Whole Slide Image (WSI) for OS Prediction";
+      heatmapImage.title = "Heatmap for OS Prediction";
+    } else if (taskType === "pfs") {
+      originImage.src = "./images/wsi图像/pfs/原图.jpg";
+      heatmapImage.src = "./images/wsi图像/pfs/热力图.jpg";
+      originImage.title = "Original Whole Slide Image (WSI) for PFS Prediction";
+      heatmapImage.title = "Heatmap for PFS Prediction";
+    }
+    
+    // 重置图像的变换状态
+    if (window.imageSynchronizer) {
+      window.imageSynchronizer.resetPosition();
+    }
+  }
+}

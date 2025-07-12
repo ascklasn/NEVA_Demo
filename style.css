@@ -239,7 +239,7 @@ header {
 .origin {
   display: inline-block; /* 内联块元素 */
   width: 50%; /* 宽度占父容器 50% */
-  background-color: black; /* 原始图像块的背景色 */
+  background-color: white; /* 原始图像块的背景色 */
   padding: 0px;
   border: 0px solid #ccc; /* 原始图像块的边框 */
   margin: 0px 0px 0px 0px; /* 上下左右间距 */
@@ -247,14 +247,15 @@ header {
 }
 .origin_wsi {
   width: 100%; /* 图像宽度占满父元素 */
-  height: auto; /* 高度自适应 */
+  height: 100%; /* 改为100%以适应容器 */
+  object-fit: contain; /* 确保图像完全显示 */
   border-radius: 0px; /* 不加圆角效果 */
 }
 
 .heatmap {
   display: inline-block;
   width: 50%; /* 宽度占父容器 50% */
-  background-color: black;
+  background-color: white;
   /* 原始图像块的背景色 */
   padding: 0px;
   border: 0px solid #ccc;
@@ -264,7 +265,8 @@ header {
 
 .heatmap_wsi {
   width: 100%; /* 图像宽度占满父元素 */
-  height: auto; /* 高度自适应 */
+  height: 100%; /* 改为100%以适应容器 */
+  object-fit: contain; /* 确保图像完全显示 */
   border-radius: 0px; /* 不加圆角效果 */
 }
 
@@ -358,7 +360,7 @@ header {
 .heatmap_wsi {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   user-select: none;
   pointer-events: none;
@@ -439,7 +441,7 @@ footer {
 .Copyright {
   display: block;
   width: 100%;
-  background-color: rgb(244, 145, 145);
+  background-color: rgb(246, 194, 194);
 
   text-align: center; /* 居中对齐 */
 
