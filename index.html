@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="NEVA, Neuroblastoma, Vision-language AI model"
+    />
+    <meta
+      name="description"
+      content="NEVA: A Unified Vision-language Model for Precision Neuroblastoma Care."
+    />
+    <meta name="author" content="NEVA Team" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+    <!-- defer 告诉浏览器脚本下载可以提前，但执行要等 DOM 加载完后再执行，好处是：脚本异步加载，不阻塞页面渲染，保证 DOM 元素已经准备好（很重要！）。
+ -->
+
+    <!-- 以下设置网页图标和标题，不在网页内部显示 -->
+    <link rel="icon" type="image/svg+xml" href="./images/icon-heart.svg" />
+    <title>NEVA</title>
+  </head>
+
+  <body>
+    <!-- header，mian，footer 是HTML5引入的语义化标签，均为block块级元素，行为与<div>相同 -->
+    <!-- header 头部，存放网站的标题和导航，是一个整体为block -->
+    <header>
+      <h1 class="header-title">
+        <p>A Unified Vision-language Model for Precision Neuroblastoma Care</p>
+      </h1>
+
+      <div class="icon">
+        <!-- 以下图标需要是 各个医院的图标+学校的图标，通讯作者的邮箱、github的代码，李老师实验室可以做个网页(参考HUGO的实验室模板) -->
+        <a
+          class="Hospital-Link"
+          href="http://www.chcmu.com/chcmu_en/old.htm"
+          target="_blank"
+          ><img
+            src="./images/医院徽章/重庆医科大附属儿童医院_中英徽章.png"
+            alt="Children's Hospital of Chongqing Medical University。"
+            width="90"
+            title="Children's Hospital of Chongqing Medical University。"
+        /></a>
+
+        <a
+          class="Hospital-Link"
+          href="http://pkufh.91health.net/Html/News/Main/1392.html"
+          target="_blank"
+          ><img
+            src="./images/医院徽章/北大附一.jpg"
+            alt="Peking University First Hospital"
+            width="90"
+            title="Peking University First Hospital"
+        /></a>
+
+        <a class="Hospital-Link" href="http://www.szkid.com.cn/" target="_blank"
+          ><img
+            src="./images/医院徽章/深圳.png"
+            alt="Shenzhen Children's Hospital"
+            width="90"
+            title="Shenzhen Children's Hospital"
+        /></a>
+
+        <a class="Hospital-Link" href="http://www.fy1938.com/" target="_blank"
+          ><img
+            src="./images/医院徽章/贵阳.jpg"
+            alt="Guiyang Maternal and Child Health Hospital"
+            width="90"
+            title="Guiyang Maternal and Child Health Hospital"
+        /></a>
+
+        <a
+          class="Hospital-Link"
+          href="http://www.nmgfybjy.org.cn/"
+          target="_blank"
+          ><img
+            src="./images/医院徽章/内蒙古.png"
+            alt="Inner Mongolia Maternal and Child Health Hospital"
+            width="90"
+            title="Inner Mongolia Maternal and Child Health Hospital"
+        /></a>
+
+        <a class="Hospital-Link" href="https://cbtn.org/A" target="_blank"
+          ><img
+            src="./images/医院徽章/cbtn圆徽章.png"
+            alt="Children's Brain Tumor Network"
+            width="90"
+            title="Children's Brain Tumor Network"
+        /></a>
+
+        <!-- <a
+          class="Hospital-Link"
+          href="mailto:example@example.com"
+          target="_blank"
+          ><img src="./images/email_icon.svg" alt="email icon" width="30"
+        /></a>
+
+        <a
+          class="Hospital-Link"
+          href="https://github.com/ascklasn/NEVA"
+          target="_blank"
+          ><img
+            src="./images/Nature_journal_logo.svg"
+            alt="Nature Journal logo"
+            width="30"
+        /></a> -->
+      </div>
+    </header>
+
+    <!-- main 主要内容区域，算一整个block，占一行，但是html要求main只出现一次 -->
+    <main>
+      <div class="container">
+        <div class="left_block">
+          <h3 class="model_name">
+            <strong>NEVA</strong>
+            <a href="https://github.com/ascklasn/NEVA" target="_blank"
+              ><img
+                src="./images/github_icon.svg"
+                alt=" NEVA github repository"
+                style="width: 40px; position: relative; top: 5px; left: 10px"
+            /></a>
+            <!-- <a href="https://github.com/ascklasn/NEVA" target="_blank"
+              ><img
+                src="./images/Nature_journal_logo.svg"
+                alt="Nature Journal logo"
+                width="80px"
+                style="width: 80px; position: relative; top: -5px; left: 20px"
+            /></a> -->
+          </h3>
+          <p class="model_description">
+            Toward Precision Neuroblastoma Care: A Unified Vision-Language Model
+            for Diagnosis, Biomarker Prediction, and Prognosis
+          </p>
+          <hr />
+
+          <form
+            action="#这个填写服务器的API,就是当点击提交表单的时候会上传到哪个服务器"
+            method="post"
+          >
+            <div class="Institution">
+              <label for="institution"><strong>Institution:</strong></label>
+              <br />
+              <select id="institution" name="Institution">
+                <option value="">-- Please select an institution --</option>
+                <option value="CHCMU">
+                  Children's Hospital of Chongqing Medical University
+                </option>
+                <option value="PUFH">Peking University First Hospital</option>
+                <option value="SCH">Shenzhen Children's Hospital</option>
+                <option value="GMCHH">
+                  Guiyang Maternal and Child Health Hospital
+                </option>
+                <option value="IMMCHH">
+                  Inner Mongolia Maternal and Child Health Hospital
+                </option>
+                <option value="CBTN">Children's Brain Tumor Network</option>
+              </select>
+            </div>
+
+            <div class="Type">
+              <label for="type"><strong>Clinical Type:</strong></label>
+              <select id="type" name="ClinicalType" onchange="updateSubtask()">
+                <option value="">-- Please select a clinical type --</option>
+                <option value="Diagnosis">Diagnosis</option>
+                <option value="BiomarkerPrediction">
+                  Biomarker Prediction
+                </option>
+                <option value="Prognosis">Prognosis</option>
+              </select>
+            </div>
+
+            <div class="Task" style="margin-top: 10px">
+              <label for="task"><strong>Task:</strong></label>
+              <select id="task" name="task" onchange="updatePredictionInfo()">
+                <option value="">-- Please select a type first --</option>
+              </select>
+            </div>
+
+            <div class="Mode">
+              <label for="mode"><strong>Mode:</strong></label>
+              <select id="mode" name="Mode">
+                <option value="Side by Side">Side by Side</option>
+                <!-- <option value="Overlay">Overlay</option> -->
+                <!--  -->
+              </select>
+            </div>
+            <hr />
+
+            <div class="prediction">
+              <table border="5">
+                <caption>
+                  <strong>Prediction Results</strong>
+                </caption>
+                <tr>
+                  <th>Task</th>
+                  <td id="prediction-task">Subtype</td>
+                </tr>
+                <tr>
+                  <th>Type</th>
+                  <td id="prediction-type">Classification</td>
+                </tr>
+                <tr>
+                  <th>Prediction</th>
+                  <td id="prediction-result">Neuroblastoma</td>
+                </tr>
+                <tr>
+                  <th>Ground Truth</th>
+                  <td id="ground-truth">Neuroblastoma</td>
+                </tr>
+                <tr>
+                  <th>Confidence</th>
+                  <td id="confidence">0.983</td>
+                </tr>
+              </table>
+            </div>
+          </form>
+        </div>
+
+        <div class="right_block">
+          <div class="images-container">
+            <div class="origin">
+              <div class="image-container" id="originContainer">
+                <div class="image-wrapper" id="originWrapper">
+                  <img
+                    class="origin_wsi"
+                    id="originImage"
+                    src="./images/wsi图像/pfs/原始图高分辨率.jpg"
+                    alt="origin_wsi"
+                    title="Original Whole Slide Image (WSI) of Neuroblastoma"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="heatmap">
+              <div class="image-container" id="heatmapContainer">
+                <div class="image-wrapper" id="heatmapWrapper">
+                  <img
+                    class="heatmap_wsi"
+                    id="heatmapImage"
+                    src="./images/wsi图像/pfs/热力图.jpg"
+                    alt="heatmap"
+                    title="Heatmap of Neuroblastoma"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 图像同步控制面板 - 放在图像下方 -->
+          <div class="image-sync-controls" style="height: 40px">
+            <button id="zoomInBtn" class="sync-control-btn" title="Zoom In">
+              🔍+
+            </button>
+            <button id="zoomOutBtn" class="sync-control-btn" title="Zoom Out">
+              🔍-
+            </button>
+            <button id="resetBtn" class="sync-control-btn" title="Reset View">
+              🏠
+            </button>
+            <span class="zoom-level" id="zoomLevel">100%</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- footer：用于网站的版权信息和联系信息，算一整个block -->
+    <footer>
+      <div class="School">
+        <!-- 以下图标需要是 各个医院的图标+学校的图标，通讯作者的邮箱、github的代码，李老师实验室可以做个网页(参考HUGO的实验室模板) -->
+        <a
+          class="School-Link"
+          href="http://www.chcmu.com/chcmu_en/old.htm"
+          target="_blank"
+          ><img
+            src="./images/学校徽章/重庆医科大学附属儿童医院.png"
+            alt="Children’s Hospital of Chongqing Medical University"
+            width="90"
+            title="Children’s Hospital of Chongqing Medical University"
+        /></a>
+
+        <a class="School-Link" href="https://med.stanford.edu/" target="_blank"
+          ><img
+            src="./images/学校徽章/斯坦福医学院.png"
+            alt="Stanford University"
+            width="90"
+            title="Stanford University"
+        /></a>
+
+        <a
+          class="School-Link"
+          href="https://www.tsinghua.edu.cn/en/"
+          target="_blank"
+          ><img
+            src="./images/学校徽章/清华大学.png"
+            alt="Tsinghua University"
+            width="90"
+            title="Tsinghua University"
+        /></a>
+
+        <a
+          class="School-Link"
+          href="https://english.cqmu.edu.cn/"
+          target="_blank"
+          ><img
+            src="./images/学校徽章/重庆医科大学.png"
+            alt="Chongqing Medical University"
+            width="90"
+            title="Chongqing Medical University"
+        /></a>
+
+        <a class="School-Link" href="https://en.scu.edu.cn/" target="_blank"
+          ><img
+            src="./images/学校徽章/四川大学.png"
+            alt="Tsinghua University"
+            width="90"
+            title="Tsinghua University"
+        /></a>
+        <a class="School-Link" href="https://hms.harvard.edu/" target="_blank"
+          ><img
+            src="./images/学校徽章/哈佛大学.png"
+            alt="Harvard University"
+            width="90"
+            title="Harvard University"
+        /></a>
+      </div>
+      <div class="Copyright">
+        © Copyright 2025 Tsinghua University | All Rights Reserved.
+      </div>
+    </footer>
+  </body>
+</html>

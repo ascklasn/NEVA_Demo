@@ -1,0 +1,450 @@
+/* CSS的优先级高于html中设置的样式 */
+
+/* 先给整个页面设置基本样式 */
+html {
+  font-size: 10px;
+  /* 设置根元素字体大小为10px   */
+  /* 这样1rem = 10px，方便计算 */
+}
+body {
+  background-color: none;
+  font-family: Arial, sans-serif;
+  /* line-height: 1.6; */
+  margin: 0;
+  padding: 0;
+}
+
+/* 以下是header的样式 */
+header {
+  display: flex;
+  flex-direction: row; /* 水平方向布局 */
+  flex-wrap: nowrap; /* 默认也是不换行/列 */
+  justify-content: center; /* 水平居中对齐 */
+  align-items: center; /* 垂直顶部对齐 */
+
+  background-color: rgb(244, 253, 255);
+
+  padding: none;
+  border: 2px solid black; /* 容器的边框 */
+  margin: 0px 0px 0px 0px;
+}
+
+.header-title {
+  flex: 7; /* 标题占据父元素的7份 */
+  display: block;
+  background-color: none; /* 标题背景色 */
+
+  padding: 0px 5px 0px 5px; /* 上下左右内边距 */
+  border: 0px solid black; /* 左侧块的边框 */
+  margin: 0px 0px 0px 0px;
+
+  font-size: 3rem; /* 标题字体大小 */
+  text-align: center; /* 标题居左对齐 */
+
+  /* 设置位置 */
+  position: relative; /* 相对定位 */
+  top: 0px; /* 距离顶部0px */
+  left: 0px; /* 距离左侧0px */
+}
+
+.icon {
+  flex: 4;
+  display: flex;
+  flex-direction: row; /* 水平方向布局 */
+  flex-wrap: nowrap; /* 默认也是不换行 */
+  justify-content: space-around; /* 水平居中对齐 */
+  align-items: center; /* 垂直居中对齐 */
+
+  background-color: none;
+
+  padding: 0px;
+  border: 0px solid black; /* 容器的边框 */
+  margin: 0px 0px 0px 0px;
+}
+
+.Hospital-Link {
+  display: inline-block; /* 内联块元素 */
+}
+
+.Hospital-Link img {
+  width: 80px; /* 图标宽度 */
+  border-radius: 0%; /* 不加圆角效果 */
+}
+
+/* 以下是main的样式
+   左边：机构、任务等选项
+   右边：原始图像和热力图
+ */
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* 默认也是不换行 */
+  justify-content: center; /* 水平居中对齐 */
+  align-items: flex-start; /* 垂直顶部对齐 */
+
+  background-color: lightblue;
+  padding: none;
+  border: 0px solid #ccc; /* 容器的边框 */
+  margin: 10px 0px 20px 0px;
+
+  /* 左右块的间距 */
+  gap: 10px; /* 左右块之间的间距 */
+}
+
+.left_block {
+  display: block;
+
+  background-color: rgb(234, 243, 183);
+  flex: 2.2; /* 平分空间 */
+  height: 580px;
+
+  padding: 0px 0px 0px 10px; /* 上下左右内边距 */
+  border: 5px solid #ccc; /* 左侧块的边框 */
+  margin: 0px 0px 0px 0px;
+
+  font-size: 1.5rem; /* 标题字体大小 */
+  text-align: left; /* 这个block中不同的行的内容左对齐 */
+
+  /* 设置位置 */
+  position: relative; /* 相对定位 */
+  top: 0px; /* 距离顶部0px */
+  left: 0px; /* 距离左侧0px */
+}
+
+.model_name {
+  text-align: left; /* 左对齐 */
+  font-size: 3rem; /* 字体大小 */
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
+.model_description {
+  text-align: left; /* 左对齐 */
+  font-size: 1.8rem; /* 字体大小 */
+  margin: 10px 0px 10px 0px; /* 上下左右间距 */
+}
+
+.Institution {
+  text-align: left; /* 左对齐 */
+  font-size: 2rem; /* 字体大小 */
+  margin: 20px 0px 0px 0px; /* 上下左右间距 */
+}
+#institution {
+  text-align: left; /* 左对齐 */
+  font-size: 1.5rem; /* 字体大小 */
+
+  padding: px 0px px 0px; /* 上下左右内边距 */
+  border: 1px solid black; /* 边框 */
+  border-radius: 3px;
+  margin: 10px 10px 0px 0px; /* 上下左右间距 */
+}
+
+.Type {
+  text-align: left; /* 左对齐 */
+  font-size: 2rem; /* 字体大小 */
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
+#type {
+  text-align: left; /* 左对齐 */
+  font-size: 1.5rem; /* 字体大小 */
+
+  padding: 0px 0px 0px 0px; /* 上下左右内边距 */
+  border: 1px solid black; /* 边框 */
+  border-radius: 3px;
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
+.Task {
+  text-align: left; /* 左对齐 */
+  font-size: 2rem; /* 字体大小 */
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
+#task {
+  text-align: left; /* 左对齐 */
+  font-size: 1.5rem; /* 字体大小 */
+
+  padding: 0px 0px 0px 0px; /* 上下左右内边距 */
+  border: 1px solid black; /* 边框 */
+  border-radius: 3px;
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
+
+.Mode {
+  text-align: left; /* 左对齐 */
+  font-size: 2rem; /* 字体大小 */
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
+#mode {
+  text-align: left; /* 左对齐 */
+  font-size: 1.5rem; /* 字体大小 */
+
+  padding: 0px 0px 0px 0px; /* 上下左右内边距 */
+  border: 1px solid black; /* 边框 */
+  border-radius: 3px;
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
+
+.prediction {
+  text-align: left; /* 左对中心*/
+  font-size: 2rem; /* 字体大小 */
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  width: 100%; /* 容器宽度占满父元素 */
+}
+
+.prediction table caption {
+  text-align: center; /* 左中心 */
+  font-size: 2rem; /* 字体大小 */
+  margin: 10px 0px 5px 0px; /* 上下左右间距 */
+}
+/* 表格单元格的每行之间的间距 */
+.prediction table td,
+.prediction table th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 2px solid black; /* 表格单元格的边框 */
+}
+.prediction table th {
+  text-align: center; /* 左对齐 */
+  font-size: 1.5rem; /* 字体大小 */
+}
+.prediction table td {
+  text-align: center; /* 左对齐 */
+  font-size: 1.3rem; /* 字体大小 */
+}
+
+/* 右侧块 */
+.right_block {
+  display: flex;
+  flex: 7.5; /* 平分空间 */
+
+  flex-direction: column; /* 改为垂直方向布局，让控制面板在下方 */
+  flex-wrap: nowrap; /* 默认也是不换行/列 */
+  justify-content: flex-start; /* 垂直方向从顶部开始对齐 */
+  align-items: center; /* 水平居中对齐 */
+
+  background-color: none;
+  padding: none;
+  border: 5px solid #ccc; /* 容器的边框 */
+  margin: 0px 0px 0px 0px;
+}
+
+/* 创建一个包含两张图像的容器 */
+.images-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex: 1; /* 占据大部分空间 */
+}
+
+.origin {
+  display: inline-block; /* 内联块元素 */
+  width: 50%; /* 宽度占父容器 50% */
+  background-color: black; /* 原始图像块的背景色 */
+  padding: 0px;
+  border: 0px solid #ccc; /* 原始图像块的边框 */
+  margin: 0px 0px 0px 0px; /* 上下左右间距 */
+  text-align: center; /* 内容居中对齐 */
+}
+.origin_wsi {
+  width: 100%; /* 图像宽度占满父元素 */
+  height: auto; /* 高度自适应 */
+  border-radius: 0px; /* 不加圆角效果 */
+}
+
+.heatmap {
+  display: inline-block;
+  width: 50%; /* 宽度占父容器 50% */
+  background-color: black;
+  /* 原始图像块的背景色 */
+  padding: 0px;
+  border: 0px solid #ccc;
+  margin: 0px 0px 0px 0px; /* 上下左右间距 */
+  text-align: center; /* 内容居中对齐 */
+}
+
+.heatmap_wsi {
+  width: 100%; /* 图像宽度占满父元素 */
+  height: auto; /* 高度自适应 */
+  border-radius: 0px; /* 不加圆角效果 */
+}
+
+/* 图像同步功能样式 */
+.image-sync-controls {
+  display: flex;
+
+  flex-direction: row; /* 改为水平方向布局，让控制面板在下方 */
+  flex-wrap: nowrap; /* 默认也是不换行/列 */
+  justify-content: center; /* 垂直方向从顶部开始对齐 */
+  align-items: center; /* 水平居中对齐 */
+
+  gap: 20px;
+
+  background-color: #f8f9fa;
+
+  padding: 5px 0px 5px 0px; /* 上下左右内边距 */
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin: 20px 0px 5.1px 0px; /* 上下左右间距 */
+  width: 100%;
+}
+
+.sync-control-btn {
+  background-color: #1976d2;
+  color: white; /* 按钮背景色和文字颜色 */
+
+  /* 设置按钮的样式 */
+
+  padding: 5px 10px 5px 10px;
+  border: none;
+  border-radius: 7px;
+  margin: 0px 0px 0px 0px;
+  cursor: pointer;
+
+  font-size: 20px;
+  transition: background-color 0.2s;
+  min-width: 40px;
+}
+
+.sync-control-btn:hover {
+  background-color: #1565c0;
+}
+
+.sync-control-btn:active {
+  transform: scale(0.95);
+}
+
+.zoom-level {
+  font-weight: bold;
+  font-size: 13px;
+  color: #333;
+  min-width: 45px;
+  text-align: center;
+  padding: 0 5px;
+}
+
+/* 重新定义图像容器以支持同步 */
+.origin,
+.heatmap {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.origin:active,
+.heatmap:active {
+  cursor: grabbing;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 500px; /* 增加高度，让图像更大 */
+  overflow: hidden;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+.image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+}
+
+.origin_wsi,
+.heatmap_wsi {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .right_block {
+    flex-direction: column;
+  }
+
+  .images-container {
+    flex-direction: column;
+  }
+
+  .origin,
+  .heatmap {
+    width: 100%;
+  }
+
+  .image-container {
+    height: 300px;
+  }
+
+  .image-sync-controls {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .sync-control-btn {
+    padding: 5px 8px;
+    font-size: 13px;
+    min-width: 35px;
+    height: 28px;
+  }
+
+  .zoom-level {
+    font-size: 12px;
+    min-width: 40px;
+  }
+}
+
+/* 以下是footer的样式 */
+
+/* 以下是footer的样式 */
+footer {
+  display: flex;
+  flex-direction: column; /* 垂直方向布局 */
+  flex-wrap: wrap; /* 默认也是不换行/列 */
+  justify-content: center; /* 水平居中对齐 */
+  align-items: center; /* 垂直顶部对齐 */
+
+  background-color: none;
+  padding: none;
+  border: 0px solid black; /* 容器的边框 */
+  margin: 0px 0px 0px 0px;
+}
+
+.School {
+  display: flex;
+  flex-direction: row; /* 水平方向布局 */
+  flex-wrap: nowrap; /* 默认也是不换行 */
+  justify-content: center; /* 水平居中对齐 */
+  background-color: none;
+  align-items: center; /* 垂直居中对齐 */
+  gap: 50px; /* 图标之间的间距 */
+}
+
+.School-Link {
+  display: inline-block; /* 内联块元素 */
+}
+
+.School-Link img {
+  width: 200px; /* 图标宽度 */
+  border-radius: 0%; /* 不加圆角效果 */
+}
+
+.Copyright {
+  display: block;
+  width: 100%;
+  background-color: rgb(244, 145, 145);
+
+  text-align: center; /* 居中对齐 */
+
+  font-size: 2rem; /* 字体大小 */
+  padding: 10px 0px 10px 0px; /* 上下左右内边距 */
+  border: 0px solid #ccc; /* 左侧块的边框 */
+  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+}
