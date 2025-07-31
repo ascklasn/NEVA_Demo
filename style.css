@@ -39,12 +39,21 @@ header {
   margin: 0px 0px 0px 0px;
 
   font-size: 3rem; /* 标题字体大小 */
-  text-align: center; /* 标题居左对齐 */
+  text-align: center; /* 标题居中对齐 */
+  
+  /* 添加平滑过渡效果 */
+  transition: all 0.3s ease;
 
   /* 设置位置 */
   position: relative; /* 相对定位 */
   top: 0px; /* 距离顶部0px */
   left: 0px; /* 距离左侧0px */
+}
+
+/* 悬停效果 */
+.header-title:hover {
+  transform: translateY(-2px); /* 轻微上移 */
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
 }
 
 .icon {
@@ -63,12 +72,23 @@ header {
 }
 
 .Hospital-Link {
-  display: inline-block; /* 内联块元素 */
+  display: inline-block;
+  transition: transform 0.3s ease;
+  border-radius: 2px;
+  padding: 3px;
+  /* background: rgba(255, 255, 255, 0); */
+}
+
+.Hospital-Link:hover {
+  transform: scale(1.1) translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .Hospital-Link img {
-  width: 80px; /* 图标宽度 */
-  border-radius: 0%; /* 不加圆角效果 */
+  width: 80px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255,255,255,0.3);
 }
 
 /* 以下是main的样式
@@ -86,7 +106,7 @@ header {
   background-color: lightblue;
   padding: none;
   border: 0px solid #ccc; /* 容器的边框 */
-  margin: 10px 0px 20px 0px;
+  margin: 10px 0px 10px 0px;
 
   /* 左右块的间距 */
   gap: 10px; /* 左右块之间的间距 */
@@ -95,7 +115,7 @@ header {
 .left_block {
   display: block;
 
-  background-color: rgb(234, 243, 183);
+  background-color: rgb(240, 248, 255);
   flex: 2.2; /* 平分空间 */
   height: 580px;
 
@@ -116,100 +136,303 @@ header {
   text-align: left; /* 左对齐 */
   font-size: 3rem; /* 字体大小 */
   margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  font-weight: 600; /* 字体加粗 */
+  color: #2c3e50; /* 深蓝灰色 */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  position: relative; /* 相对定位 */
 }
+
+/* 鼠标悬停的时候的变化 */
+.model_name:hover {
+  color: #3498db; /* 悬停时变为蓝色 */
+  text-shadow: 0 2px 5px rgba(52, 152, 219, 0.3); /* 悬停时蓝色阴影 */
+  transform: translateX(5px); /* 轻微右移 */
+}
+
 .model_description {
   text-align: left; /* 左对齐 */
-  font-size: 1.8rem; /* 字体大小 */
-  margin: 10px 0px 10px 0px; /* 上下左右间距 */
+  font-size: 1.6rem; /* 字体大小 */
+  margin: 5px 8px 10px 0px; /* 减少上下间距，右边留出8px空间 */
+  
+  /* 美化效果 */
+  color: #555; /* 中性灰色 */
+  line-height: 1.2; /* 减少行间距 */
+  font-weight: 400; /* 正常字重 */
+  background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(240,248,255,0.6)); /* 渐变背景 */
+  padding: 4px 8px; /* 减少内边距 */
+  border-radius: 4px; /* 减小圆角 */
+  border-left: 3px solid #3498db; /* 减小左侧边框 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 减小阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+.model_description:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,248,255,0.8)); /* 悬停时背景变亮 */
+  border-left-color: #2980b9; /* 悬停时边框颜色加深 */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* 悬停时阴影稍微加深 */
+  transform: translateX(1px); /* 减少右移距离 */
 }
 
 .Institution {
   text-align: left; /* 左对齐 */
-  font-size: 2rem; /* 字体大小 */
-  margin: 20px 0px 0px 0px; /* 上下左右间距 */
+  font-size: 1.9rem; /* 字体大小 */
+  margin: 5px 0px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  font-weight: 500; /* 字体加粗 */
+  color: #34495e; /* 深灰色 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
 }
+
+.Institution:hover {
+  color: #3498db; /* 悬停时变为蓝色 */
+  text-shadow: 0 2px 4px rgba(52, 152, 219, 0.3); /* 悬停时蓝色阴影 */
+  transform: translateX(3px); /* 轻微右移 */
+}
+
 #institution {
   text-align: left; /* 左对齐 */
   font-size: 1.5rem; /* 字体大小 */
 
-  padding: px 0px px 0px; /* 上下左右内边距 */
-  border: 1px solid black; /* 边框 */
-  border-radius: 3px;
-  margin: 10px 10px 0px 0px; /* 上下左右间距 */
+  padding: 6px 10px; /* 增加内边距 */
+  border: 2px solid #3498db; /* 统一蓝色边框 */
+  border-radius: 6px; /* 增加圆角 */
+  margin: 5px 10px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,248,255,0.8)); /* 淡蓝色渐变背景 */
+  color: #2c3e50; /* 深色文字 */
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2); /* 蓝色阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  cursor: pointer; /* 鼠标指针 */
+}
+
+#institution:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,1), rgba(230,245,255,0.9)); /* 悬停时背景变亮 */
+  border-color: #2980b9; /* 悬停时边框颜色加深 */
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3); /* 悬停时阴影加深 */
+  transform: translateY(-2px); /* 轻微上移 */
+}
+
+#institution:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3); /* 聚焦时外圈阴影 */
 }
 
 .Type {
   text-align: left; /* 左对齐 */
-  font-size: 2rem; /* 字体大小 */
-  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  font-size: 1.9rem; /* 字体大小 */
+  margin: 5px 0px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  font-weight: 500; /* 字体加粗 */
+  color: #34495e; /* 深灰色 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
 }
+
+.Type:hover {
+  color: #3498db; /* 悬停时变为蓝色 */
+  text-shadow: 0 2px 4px rgba(52, 152, 219, 0.3); /* 悬停时蓝色阴影 */
+  transform: translateX(3px); /* 轻微右移 */
+}
+
 #type {
   text-align: left; /* 左对齐 */
   font-size: 1.5rem; /* 字体大小 */
 
-  padding: 0px 0px 0px 0px; /* 上下左右内边距 */
-  border: 1px solid black; /* 边框 */
-  border-radius: 3px;
-  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  padding: 6px 10px; /* 增加内边距 */
+  border: 2px solid #3498db; /* 统一蓝色边框 */
+  border-radius: 6px; /* 增加圆角 */
+  margin: 5px 10px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,248,255,0.8)); /* 淡蓝色渐变背景 */
+  color: #2c3e50; /* 深色文字 */
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2); /* 蓝色阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  cursor: pointer; /* 鼠标指针 */
 }
+
+#type:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,1), rgba(230,245,255,0.9)); /* 悬停时背景变亮 */
+  border-color: #2980b9; /* 悬停时边框颜色加深 */
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3); /* 悬停时阴影加深 */
+  transform: translateY(-2px); /* 轻微上移 */
+}
+
+#type:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3); /* 聚焦时外圈阴影 */
+}
+
+
 .Task {
   text-align: left; /* 左对齐 */
-  font-size: 2rem; /* 字体大小 */
-  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  font-size: 1.9rem; /* 字体大小 */
+  margin: 5px 0px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  font-weight: 500; /* 字体加粗 */
+  color: #34495e; /* 深灰色 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
 }
+
+.Task:hover {
+  color: #3498db; /* 悬停时变为蓝色 */
+  text-shadow: 0 2px 4px rgba(52, 152, 219, 0.3); /* 悬停时蓝色阴影 */
+  transform: translateX(3px); /* 轻微右移 */
+}
+
 #task {
   text-align: left; /* 左对齐 */
   font-size: 1.5rem; /* 字体大小 */
 
-  padding: 0px 0px 0px 0px; /* 上下左右内边距 */
-  border: 1px solid black; /* 边框 */
-  border-radius: 3px;
-  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  padding: 6px 10px; /* 增加内边距 */
+  border: 2px solid #3498db; /* 统一蓝色边框 */
+  border-radius: 6px; /* 增加圆角 */
+  margin: 5px 10px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,248,255,0.8)); /* 淡蓝色渐变背景 */
+  color: #2c3e50; /* 深色文字 */
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2); /* 蓝色阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  cursor: pointer; /* 鼠标指针 */
+}
+
+#task:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,1), rgba(230,245,255,0.9)); /* 悬停时背景变亮 */
+  border-color: #2980b9; /* 悬停时边框颜色加深 */
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3); /* 悬停时阴影加深 */
+  transform: translateY(-2px); /* 轻微上移 */
+}
+
+#task:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3); /* 聚焦时外圈阴影 */
 }
 
 .Mode {
   text-align: left; /* 左对齐 */
-  font-size: 2rem; /* 字体大小 */
-  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  font-size: 1.9rem; /* 字体大小 */
+  margin: 5px 0px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  font-weight: 500; /* 字体加粗 */
+  color: #34495e; /* 深灰色 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
 }
+
+.Mode:hover {
+  color: #3498db; /* 悬停时变为蓝色 */
+  text-shadow: 0 2px 4px rgba(52, 152, 219, 0.3); /* 悬停时蓝色阴影 */
+  transform: translateX(3px); /* 轻微右移 */
+}
+
 #mode {
   text-align: left; /* 左对齐 */
   font-size: 1.5rem; /* 字体大小 */
 
-  padding: 0px 0px 0px 0px; /* 上下左右内边距 */
-  border: 1px solid black; /* 边框 */
-  border-radius: 3px;
-  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  padding: 6px 10px; /* 增加内边距 */
+  border: 2px solid #3498db; /* 统一蓝色边框 */
+  border-radius: 6px; /* 增加圆角 */
+  margin: 8px 10px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化效果 */
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,248,255,0.8)); /* 淡蓝色渐变背景 */
+  color: #2c3e50; /* 深色文字 */
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2); /* 蓝色阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  cursor: pointer; /* 鼠标指针 */
+}
+
+#mode:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,1), rgba(230,245,255,0.9)); /* 悬停时背景变亮 */
+  border-color: #2980b9; /* 悬停时边框颜色加深 */
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3); /* 悬停时阴影加深 */
+  transform: translateY(-2px); /* 轻微上移 */
+}
+
+#mode:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3); /* 聚焦时外圈阴影 */
 }
 
 .prediction {
   text-align: left; /* 左对中心*/
-  font-size: 2rem; /* 字体大小 */
-  margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  font-size: 1.9rem; /* 字体大小 */
+  margin: 5px 0px 0px 0px; /* 上下左右间距，右边留出空间 */
   width: 100%; /* 容器宽度占满父元素 */
+  
+  /* 美化效果 */
+  /* padding: 5px 0px; 内边距 */
+  border-radius: 8px; /* 圆角 */
+  box-shadow: 0 2px 6px rgba(52, 152, 219, 0.15); /* 蓝色阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
+
+}
+
+.prediction:hover {
+  box-shadow: 0 3px 10px rgba(52, 152, 219, 0.25); /* 悬停时阴影加深 */
+}
+
+.prediction table {
+  width: 95%; /* 表格宽度95% */
+  border-collapse: collapse; /* 合并边框 */
+  margin: 8px 50px 8px 0px; /* 上下间距 */
+  background: rgba(255,255,255,0.8); /* 表格背景 */
+  border-radius: 6px; /* 表格圆角 */
+  overflow: hidden; /* 隐藏溢出内容以显示圆角 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 表格阴影 */
+  border-top: black 2px solid; /* 上边框 */
 }
 
 .prediction table caption {
-  text-align: center; /* 左中心 */
-  font-size: 2rem; /* 字体大小 */
-  margin: 10px 0px 5px 0px; /* 上下左右间距 */
+  text-align: left; /* 居中 */
+  font-size: 1.8rem; /* 字体大小 */
+  margin: 5px 0px 5px 5px; /* 上下左右间距 */
+  font-weight: 600; /* 字体加粗 */
+  color: #2c3e50; /* 深色 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
 }
+
 /* 表格单元格的每行之间的间距 */
 .prediction table td,
 .prediction table th {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border: 2px solid black; /* 表格单元格的边框 */
+  padding: 8px 10px; /* 增加内边距 */
+  border: 1px solid #bdc3c7; /* 更细的灰色边框 */
+  transition: all 0.2s ease; /* 过渡效果 */
 }
+
 .prediction table th {
-  text-align: center; /* 左对齐 */
-  font-size: 1.5rem; /* 字体大小 */
+  text-align: center; /* 居中对齐 */
+  font-size: 1.4rem; /* 字体大小 */
+  color: #2c3e50; /* 深色文字 */
+  font-weight: 600; /* 字体加粗 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* 更轻的文字阴影 */
 }
+
 .prediction table td {
-  text-align: center; /* 左对齐 */
+  text-align: center; /* 居中对齐 */
   font-size: 1.3rem; /* 字体大小 */
+  background: rgba(255,255,255,0.8); /* 淡色背景 */
+  color: #2c3e50; /* 深色文字 */
+}
+
+.prediction table tr:nth-child(even) td {
+  background: rgba(240,248,255,0.6); /* 偶数行不同背景色 */
+}
+
+.prediction table tr:hover td {
+  background: rgba(52, 152, 219, 0.1); /* 悬停时行背景变色 */
+  transform: scale(1.02); /* 轻微放大效果 */
 }
 
 /* 右侧块 */
@@ -413,7 +636,7 @@ footer {
   justify-content: center; /* 水平居中对齐 */
   align-items: center; /* 垂直顶部对齐 */
 
-  background-color: none;
+  background-color: rgb(248, 252, 255);
   padding: none;
   border: 0px solid black; /* 容器的边框 */
   margin: 0px 0px 0px 0px;
@@ -436,12 +659,12 @@ footer {
 .School-Link img {
   width: 200px; /* 图标宽度 */
   border-radius: 0%; /* 不加圆角效果 */
+  
 }
 
 .Copyright {
   display: block;
   width: 100%;
-  background-color: rgb(246, 194, 194);
 
   text-align: center; /* 居中对齐 */
 
@@ -449,4 +672,10 @@ footer {
   padding: 10px 0px 10px 0px; /* 上下左右内边距 */
   border: 0px solid #ccc; /* 左侧块的边框 */
   margin: 10px 0px 0px 0px; /* 上下左右间距 */
+  
+  /* 美化字体效果 */
+  color: #2c3e50; /* 深蓝灰色，与整体主题协调 */
+  font-weight: 700; /* 字体稍微加粗 */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  transition: all 0.3s ease; /* 过渡效果 */
 }

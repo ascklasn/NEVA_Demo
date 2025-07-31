@@ -138,39 +138,32 @@
             action="#这个填写服务器的API,就是当点击提交表单的时候会上传到哪个服务器"
             method="post"
           >
+
             <div class="Institution">
               <label for="institution"><strong>Institution:</strong></label>
               <br />
               <select id="institution" name="Institution">
-                <option value="">-- Please select an institution --</option>
-                <option value="CHCMU">
-                  Children's Hospital of Chongqing Medical University
-                </option>
-                <option value="PUFH">Peking University First Hospital</option>
-                <option value="SCH">Shenzhen Children's Hospital</option>
-                <option value="GMCHH">
-                  Guiyang Maternal and Child Health Hospital
-                </option>
-                <option value="IMMCHH">
-                  Inner Mongolia Maternal and Child Health Hospital
-                </option>
-                <option value="CBTN">Children's Brain Tumor Network</option>
+                <option value="none" selected>-- Please select an institution --</option>
+                <option value="CHCMU">Children's Hospital of Chongqing Medical University</option>
+                <option value="PUFH" disabled>Peking University First Hospital</option>
+                <option value="SCH" disabled>Shenzhen Children's Hospital</option>
+                <option value="GMCHH" disabled>Guiyang Maternal and Child Health Hospital</option>
+                <option value="IMMCHH" disabled>Inner Mongolia Maternal and Child Health Hospital</option>
+                <option value="CBTN" disabled>Children's Brain Tumor Network</option>
               </select>
             </div>
 
             <div class="Type">
               <label for="type"><strong>Clinical Type:</strong></label>
               <select id="type" name="ClinicalType" onchange="updateSubtask()">
-                <option value="">-- Please select a clinical type --</option>
+                <option value="none" selected>-- Please select a clinical type --</option>
                 <option value="Diagnosis">Diagnosis</option>
-                <option value="BiomarkerPrediction">
-                  Biomarker Prediction
-                </option>
+                <option value="BiomarkerPrediction">Biomarker Prediction</option>
                 <option value="Prognosis">Prognosis</option>
               </select>
             </div>
 
-            <div class="Task" style="margin-top: 10px">
+            <div class="Task">
               <label for="task"><strong>Task:</strong></label>
               <select id="task" name="task" onchange="updatePredictionInfo()">
                 <option value="">-- Please select a type first --</option>
@@ -180,15 +173,14 @@
             <div class="Mode">
               <label for="mode"><strong>Mode:</strong></label>
               <select id="mode" name="Mode">
-                <option value="Side by Side">Side by Side</option>
-                <!-- <option value="Overlay">Overlay</option> -->
-                <!--  -->
+                <option value="Side by Side" selected>Side by Side</option>
+                <option value="Overlay" disabled>Overlay</option>
               </select>
             </div>
             <hr />
 
             <div class="prediction">
-              <table border="5">
+              <table>
                 <caption>
                   <strong>Prediction Results</strong>
                 </caption>

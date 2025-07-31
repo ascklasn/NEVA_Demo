@@ -8,10 +8,12 @@ function updateSubtask() {
   let options = [];
 
   if (type === "Diagnosis") {
-    options = ["Risk Group", "Subtype", "Shimada", "MKI"];
-  } else if (type === "BiomarkerPrediction") {
-    options = ["ALK", "NMYC", "CMYC", "1p36", "11q23"];
-  } else if (type === "Prognosis") {
+    options = ["Subtype", "Shimada", "MKI", "Risk Group",];
+  }
+  else if (type === "BiomarkerPrediction") {
+    options = ["ALK", "1p36", "11q23", "NMYC", "CMYC",];
+  }
+  else if (type === "Prognosis") {
     options = ["PFS", "OS"];
   }
 
@@ -20,9 +22,16 @@ function updateSubtask() {
       const opt = document.createElement("option");
       opt.value = option;
       opt.textContent = option;
+
+
+      // 禁用 NMYC 和 CMYC 选项
+      if (option === "NMYC" || option === "CMYC" || option === "MKI" || option === "Risk Group") {
+        opt.disabled = true;
+      }
+
       subtaskSelect.appendChild(opt);
     });
-    
+
     // 自动选择第一个选项并更新预测信息
     subtaskSelect.value = options[0];
     updatePredictionInfo(); // 立即更新预测信息（包括图像切换）
@@ -38,7 +47,7 @@ function updateSubtask() {
 // 当 Task 下拉框变化时调用
 function updatePredictionInfo() {
   const selectedTask = document.getElementById("task").value;
-  
+
   // 检查元素是否存在
   const predictionTaskEl = document.getElementById("prediction-task");
   const predictionTypeEl = document.getElementById("prediction-type");
@@ -61,17 +70,37 @@ function updatePredictionInfo() {
   let predictionType = "--";
   if (classificationTasks.includes(selectedTask)) {
     predictionType = "Classification";
-    
+
     if (selectedTask === "Subtype") {
       if (groundTruthEl) groundTruthEl.textContent = "Neuroblastoma";
       if (predictionResultEl) predictionResultEl.textContent = "Neuroblastoma";
       if (confidenceEl) confidenceEl.textContent = "0.983";
     }
+    else if (selectedTask === "Shimada") {
+      if (groundTruthEl) groundTruthEl.textContent = "Unfavorable";
+      if (predictionResultEl) predictionResultEl.textContent = "Unfavorable";
+      if (confidenceEl) confidenceEl.textContent = "0.967";
+    }
+    else if (selectedTask === "ALK") {
+      if (groundTruthEl) groundTruthEl.textContent = "Overexpressed";
+      if (predictionResultEl) predictionResultEl.textContent = "Overexpressed";
+      if (confidenceEl) confidenceEl.textContent = "0.957";
+    }
+    else if (selectedTask === "1p36") {
+      if (groundTruthEl) groundTruthEl.textContent = "Deleted";
+      if (predictionResultEl) predictionResultEl.textContent = "Deleted";
+      if (confidenceEl) confidenceEl.textContent = "0.913";
+    }
+    else if (selectedTask === "11q23") {
+      if (groundTruthEl) groundTruthEl.textContent = "Deleted";
+      if (predictionResultEl) predictionResultEl.textContent = "Deleted";
+      if (confidenceEl) confidenceEl.textContent = "0.903";
+    }
     // 为其他分类任务添加默认值
     else {
-      if (groundTruthEl) groundTruthEl.textContent = "Unknown";
-      if (predictionResultEl) predictionResultEl.textContent = "Unknown";
-      if (confidenceEl) confidenceEl.textContent = "1.000";
+      if (groundTruthEl) groundTruthEl.textContent = "---";
+      if (predictionResultEl) predictionResultEl.textContent = "---";
+      if (confidenceEl) confidenceEl.textContent = "---";
     }
   }
   else if (regressionTasks.includes(selectedTask)) {
@@ -87,9 +116,6 @@ function updatePredictionInfo() {
       if (confidenceEl) {
         confidenceEl.textContent = "---";
       }
-      
-      // 切换图像到PFS目录
-      updateImageSources("pfs");
     }
     else if (selectedTask === "OS") {
       if (predictionResultEl) {
@@ -101,9 +127,6 @@ function updatePredictionInfo() {
       if (confidenceEl) {
         confidenceEl.textContent = "---";
       }
-      
-      // 切换图像到OS目录
-      updateImageSources("os");
     }
     else {
       if (predictionTaskEl) predictionTaskEl.textContent = "---";
@@ -118,6 +141,9 @@ function updatePredictionInfo() {
   if (predictionTypeEl) {
     predictionTypeEl.textContent = predictionType;
   }
+
+  // 更新图像源
+  updateImageSources(selectedTask)
 }
 
 
@@ -125,21 +151,28 @@ function updatePredictionInfo() {
 function updateImageSources(taskType) {
   const originImage = document.getElementById('originImage');
   const heatmapImage = document.getElementById('heatmapImage');
-  
-  if (originImage && heatmapImage) {
-    // 根据任务类型切换图像路径
-    if (taskType === "os") {
-      originImage.src = "./images/wsi图像/os/原图.jpg";
-      heatmapImage.src = "./images/wsi图像/os/热力图.jpg";
-      originImage.title = "Original Whole Slide Image (WSI) for OS Prediction";
-      heatmapImage.title = "Heatmap for OS Prediction";
-    } else if (taskType === "pfs") {
-      originImage.src = "./images/wsi图像/pfs/原图.jpg";
-      heatmapImage.src = "./images/wsi图像/pfs/热力图.jpg";
-      originImage.title = "Original Whole Slide Image (WSI) for PFS Prediction";
-      heatmapImage.title = "Heatmap for PFS Prediction";
-    }
-    
+
+  // 图像配置对象 - 只定义路径模式，动态生成完整路径
+  const imageConfig = {
+    "OS": { ext: "jpg" },
+    "PFS": { ext: "jpg" },
+    "ALK": { ext: "jpg" },
+    "1p36": { ext: "jpg" },
+    "11q23": { ext: "jpg" },
+    "Subtype": { ext: "jpg" },
+    "Shimada": { ext: "jpg" }
+  };
+
+  if (originImage && heatmapImage && imageConfig[taskType]) {
+    const config = imageConfig[taskType];
+    const heatmapExt = config.heatmapExt || config.ext;
+
+    // 动态生成路径和标题
+    originImage.src = `./images/wsi图像/${taskType}/原图.${config.ext}`;
+    heatmapImage.src = `./images/wsi图像/${taskType}/热力图.${heatmapExt}`;
+    originImage.title = `Original Whole Slide Image (WSI) for ${taskType} Prediction`;
+    heatmapImage.title = `Heatmap for ${taskType} Prediction`;
+
     // 重置图像的变换状态
     if (window.imageSynchronizer) {
       window.imageSynchronizer.resetPosition();
@@ -158,11 +191,11 @@ class ImageSynchronizer {
       lastMouseX: 0,
       lastMouseY: 0
     };
-    
+
     this.initializeElements();
     this.setupEventListeners();
   }
-  
+
   initializeElements() {
     this.originContainer = document.getElementById('originContainer');
     this.heatmapContainer = document.getElementById('heatmapContainer');
@@ -173,7 +206,7 @@ class ImageSynchronizer {
     this.resetBtn = document.getElementById('resetBtn');
     this.zoomLevel = document.getElementById('zoomLevel');
   }
-  
+
   setupEventListeners() {
     // 为两个图像容器添加事件监听器
     [this.originContainer, this.heatmapContainer].forEach(container => {
@@ -181,166 +214,140 @@ class ImageSynchronizer {
         // 鼠标事件
         container.addEventListener('mousedown', (e) => this.handleMouseDown(e));
         container.addEventListener('wheel', (e) => this.handleWheel(e));
-        
+
         // 触摸事件
         container.addEventListener('touchstart', (e) => this.handleTouchStart(e));
         container.addEventListener('touchmove', (e) => this.handleTouchMove(e));
         container.addEventListener('touchend', (e) => this.handleTouchEnd(e));
       }
     });
-    
+
     // 控制按钮事件 决定滚动滑轮的每次行为的放缩尺度
     if (this.zoomInBtn) this.zoomInBtn.addEventListener('click', () => this.zoomImage(1.5));
     if (this.zoomOutBtn) this.zoomOutBtn.addEventListener('click', () => this.zoomImage(0.67));
     if (this.resetBtn) this.resetBtn.addEventListener('click', () => this.resetPosition());
   }
-  
+
   updateTransform() {
     const transform = `scale(${this.syncState.scale}) translate(${this.syncState.translateX}px, ${this.syncState.translateY}px)`;
     if (this.originWrapper) this.originWrapper.style.transform = transform;
     if (this.heatmapWrapper) this.heatmapWrapper.style.transform = transform;
     if (this.zoomLevel) this.zoomLevel.textContent = `${Math.round(this.syncState.scale * 100)}%`;
   }
-  
+
   resetPosition() {
     this.syncState.scale = 1;
     this.syncState.translateX = 0;
     this.syncState.translateY = 0;
     this.updateTransform();
   }
-  
+
   //确定扩大或缩小的范围，最小缩小到原来的0.5倍，最大扩大到原来的20倍
   zoomImage(factor, centerX = 0.5, centerY = 0.5) {
     const newScale = Math.max(0.5, Math.min(10, this.syncState.scale * factor));
-    
+
     if (newScale === this.syncState.scale) return; // 如果达到边界，不进行缩放
-    
+
     // 获取容器尺寸
     const rect = this.originContainer ? this.originContainer.getBoundingClientRect() : { width: 400, height: 400 };
-    
+
     // 计算缩放中心点在容器中的像素坐标
     const centerXPx = rect.width * centerX;
     const centerYPx = rect.height * centerY;
-    
+
     // 计算缩放中心点在当前变换后图像中的坐标
     const imageX = (centerXPx - rect.width / 2) / this.syncState.scale - this.syncState.translateX;
     const imageY = (centerYPx - rect.height / 2) / this.syncState.scale - this.syncState.translateY;
-    
+
     // 更新缩放比例
     this.syncState.scale = newScale;
-    
+
     // 计算新的平移量，使缩放中心保持在鼠标位置
     this.syncState.translateX = (centerXPx - rect.width / 2) / this.syncState.scale - imageX;
     this.syncState.translateY = (centerYPx - rect.height / 2) / this.syncState.scale - imageY;
-    
+
     this.updateTransform();
   }
-  
+
   handleMouseDown(e) {
     e.preventDefault();
     this.syncState.isDragging = true;
     this.syncState.lastMouseX = e.clientX;
     this.syncState.lastMouseY = e.clientY;
-    
+
     document.addEventListener('mousemove', this.handleMouseMove.bind(this));
     document.addEventListener('mouseup', this.handleMouseUp.bind(this));
   }
-  
+
   handleMouseMove(e) {
     if (!this.syncState.isDragging) return;
-    
+
     e.preventDefault();
     const deltaX = e.clientX - this.syncState.lastMouseX;
     const deltaY = e.clientY - this.syncState.lastMouseY;
-    
+
     this.syncState.translateX += deltaX / this.syncState.scale;
     this.syncState.translateY += deltaY / this.syncState.scale;
-    
+
     this.syncState.lastMouseX = e.clientX;
     this.syncState.lastMouseY = e.clientY;
-    
+
     this.updateTransform();
   }
-  
+
   handleMouseUp(e) {
     this.syncState.isDragging = false;
     document.removeEventListener('mousemove', this.handleMouseMove.bind(this));
     document.removeEventListener('mouseup', this.handleMouseUp.bind(this));
   }
-  
+
   handleWheel(e) {
     e.preventDefault();
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = (e.clientX - rect.left) / rect.width;
     const centerY = (e.clientY - rect.top) / rect.height;
-    
+
     const factor = e.deltaY > 0 ? 0.9 : 1.1;
     this.zoomImage(factor, centerX, centerY);
   }
-  
+
   handleTouchStart(e) {
     e.preventDefault();
-    
+
     if (e.touches.length === 1) {
       this.syncState.isDragging = true;
       this.syncState.lastMouseX = e.touches[0].clientX;
       this.syncState.lastMouseY = e.touches[0].clientY;
     }
   }
-  
+
   handleTouchMove(e) {
     e.preventDefault();
-    
+
     if (e.touches.length === 1 && this.syncState.isDragging) {
       const deltaX = e.touches[0].clientX - this.syncState.lastMouseX;
       const deltaY = e.touches[0].clientY - this.syncState.lastMouseY;
-      
+
       this.syncState.translateX += deltaX / this.syncState.scale;
       this.syncState.translateY += deltaY / this.syncState.scale;
-      
+
       this.syncState.lastMouseX = e.touches[0].clientX;
       this.syncState.lastMouseY = e.touches[0].clientY;
-      
+
       this.updateTransform();
     }
   }
-  
+
   handleTouchEnd(e) {
     this.syncState.isDragging = false;
   }
 }
 
 // 页面加载完成后初始化图像同步功能
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // 等待一小段时间确保所有元素都已渲染
   setTimeout(() => {
     window.imageSynchronizer = new ImageSynchronizer();
   }, 100);
-});
-
-// 更新图像源的函数
-function updateImageSources(taskType) {
-  const originImage = document.getElementById('originImage');
-  const heatmapImage = document.getElementById('heatmapImage');
-  
-  if (originImage && heatmapImage) {
-    // 根据任务类型切换图像路径
-    if (taskType === "os") {
-      originImage.src = "./images/wsi图像/os/原图.jpg";
-      heatmapImage.src = "./images/wsi图像/os/热力图.jpg";
-      originImage.title = "Original Whole Slide Image (WSI) for OS Prediction";
-      heatmapImage.title = "Heatmap for OS Prediction";
-    } else if (taskType === "pfs") {
-      originImage.src = "./images/wsi图像/pfs/原图.jpg";
-      heatmapImage.src = "./images/wsi图像/pfs/热力图.jpg";
-      originImage.title = "Original Whole Slide Image (WSI) for PFS Prediction";
-      heatmapImage.title = "Heatmap for PFS Prediction";
-    }
-    
-    // 重置图像的变换状态
-    if (window.imageSynchronizer) {
-      window.imageSynchronizer.resetPosition();
-    }
-  }
-}
+})
